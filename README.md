@@ -25,9 +25,9 @@ always believe that no any language or method could fit all cases, so I will try
 seek the better ones for the suitable scenarios. 
 
 You could contact me:
-Email: hqxsn@hotmail.com
+<span>Email: hqxsn@hotmail.com
 LinkedIn: http://www.linkedin.com/in/andysongt
-Blog: https://community.jboss.org/people/andy.song/blog
+Blog: https://community.jboss.org/people/andy.song/blog</span>
 
 ---------------
 
