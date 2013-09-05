@@ -37,6 +37,6 @@ seek the better ones for the suitable scenarios.
 
 * PPT
 
-	** [TCP knowledge you may not know] (https://slid.es/andy_song/some-tcp-knowledges-you-may-not-know)
+	* [TCP knowledge you may not know] (https://slid.es/andy_song/some-tcp-knowledges-you-may-not-know)
 
 ---------------
