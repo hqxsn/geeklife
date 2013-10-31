@@ -19,6 +19,8 @@ public class IdUtils {
 
     private long baseId;
 
+    public static final int INVALID_INSTANCE = -1000000;
+
     private IdUtils() {
         seed = new AtomicLong(0);
         publishTime = System.currentTimeMillis();
@@ -33,8 +35,8 @@ public class IdUtils {
 
         long distance = (id - baseId);
 
-        if (distance > Integer.MAX_VALUE)
-            throw new RuntimeException("The distance is overflow");
+        if (distance >= Integer.MAX_VALUE)
+            return INVALID_INSTANCE;
 
         return (int)(distance);
     }

@@ -39,7 +39,7 @@ public class Graph {
         Set<Shape> shapes = getNodes();
 
         //If shapes.size equals 0 and shapes doesn't contain any the input shape node will return UNDEFINED_POWER
-        if (shapes.size() == 0 || !shapes.contains(shape)) {
+        if (shape == null || shapes.size() == 0 || !shapes.contains(shape) ) {
             return UNDEFINED_POWER;
         }
 
@@ -72,7 +72,11 @@ public class Graph {
         LinkedList<Shape> queue = new LinkedList<Shape>();
 
         queue.add(shape);
-        bitSet.set(IdUtils.getInstance().distance(shape.getId()), true);
+
+        int distance = IdUtils.getInstance().distance(shape.getId());
+        if (distance == IdUtils.INVALID_INSTANCE) return UNDEFINED_POWER;
+
+        bitSet.set(distance, true);
 
         int power = shape.getArea();
 
@@ -84,9 +88,9 @@ public class Graph {
 
             for(Shape nextShape:connections) {
 
-                int distance = IdUtils.getInstance().distance(nextShape.getId());
+                distance = IdUtils.getInstance().distance(nextShape.getId());
 
-                if (!nodes.contains(nextShape))  return UNDEFINED_POWER;
+                if (distance == IdUtils.INVALID_INSTANCE || !nodes.contains(nextShape))  return UNDEFINED_POWER;
 
                 if (bitSet.get(distance)) {
                     continue;
