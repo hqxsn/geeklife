@@ -29,9 +29,14 @@ public class IdUtils {
         return instance;
     }
 
-    //TODO: add check for max positive integer check
     public int distance(long id) {
-        return (int)(id - baseId);
+
+        long distance = (id - baseId);
+
+        if (distance > Integer.MAX_VALUE)
+            throw new RuntimeException("The distance is overflow");
+
+        return (int)(distance);
     }
 
     /*

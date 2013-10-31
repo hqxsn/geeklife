@@ -38,19 +38,35 @@ public class Graph {
 
         Set<Shape> shapes = getNodes();
 
+        //If shapes.size equals 0 and shapes doesn't contain any the input shape node will return UNDEFINED_POWER
         if (shapes.size() == 0 || !shapes.contains(shape)) {
             return UNDEFINED_POWER;
         }
 
+        //If only contains 1 node just return shape's area as power
         if (shapes.size() == 1) {
             return shape.getArea();
         }
 
+        /*
+            If only contains 2 nodes
+            1. if shape connected shapes size not equals to 1, return UNDEFINED_POWER
+            2. if shape connected shape not in the nodes collection, return UNDEFINED_POWER
+            3. then compare the area values of two nodes, return the bigger one
+         */
         if (shapes.size() == 2) {
+            if (shape.getConnections().size() == 0 || shape.getConnections().size() > 1) return UNDEFINED_POWER;
+
             Shape nextShape = shape.getConnections().get(0);
+
+            if (!getNodes().contains(nextShape)) return UNDEFINED_POWER;
+
             return shape.getArea() > nextShape.getArea() ? shape.getArea() : nextShape.getArea();
         }
 
+
+        //Here begin using the BFS algorithm to traverse the map nodes.
+        //Here use bitset to save the if the node was visited.
         BitSet bitSet = new BitSet();
 
         LinkedList<Shape> queue = new LinkedList<Shape>();
@@ -70,9 +86,13 @@ public class Graph {
 
                 int distance = IdUtils.getInstance().distance(nextShape.getId());
 
+                if (!nodes.contains(nextShape))  return UNDEFINED_POWER;
+
                 if (bitSet.get(distance)) {
                     continue;
                 }
+
+
 
                 power = power > nextShape.getArea() ? power : nextShape.getArea();
                 bitSet.set(distance, true);

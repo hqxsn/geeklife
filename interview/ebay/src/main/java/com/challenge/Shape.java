@@ -51,7 +51,13 @@ public class Shape implements Serializable {
 
     @Override
     public int hashCode() {
+
+        //using jdk 7 new string hashing algorithm, it's faster than less collision
+        //Ref:http://vaskoz.wordpress.com/2013/06/03/java-678-hashmap-collisions/
         return sun.misc.Hashing.stringHash32(getName() + id);
+
+        //If using jdk 6 should working with
+        //return (getName() + id).hashCode();
     }
 
     @Override
