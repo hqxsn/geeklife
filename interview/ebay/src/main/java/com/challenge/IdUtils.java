@@ -39,6 +39,12 @@ public class IdUtils {
         return (int)(distance);
     }
 
+    public void reset() {
+        seed = new AtomicLong(0);
+        publishTime = System.currentTimeMillis();
+        baseId = generate(1l);
+    }
+
     /*
         This method is generate the sequence id base on
         type 00000001  8bit
