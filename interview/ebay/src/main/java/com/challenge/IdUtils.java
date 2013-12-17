@@ -1,5 +1,6 @@
 package com.challenge;
 
+import java.nio.CharBuffer;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -76,7 +77,7 @@ public class IdUtils {
 
     }
 
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         long id1 = IdUtils.getInstance().generate(1l);
         long id2 = IdUtils.getInstance().generate(1l);
         long id3 = IdUtils.getInstance().generate(1l);
@@ -92,8 +93,45 @@ public class IdUtils {
         System.out.println(id10);
         System.out.println(id10-id1);
     }
-
+*/
     public long getBaseId() {
         return baseId;
+    }
+
+    public static void main(String[] args) throws Exception {
+        CharBuffer buffer = CharBuffer.allocate(64);
+        buffer.put("Let's write some Java code! ");
+
+        System.out.println("Position: " + buffer.position());
+        System.out.println("Limit   : " + buffer.limit());
+
+        //
+        // Read 10 chars from the buffer.
+        //
+        buffer.flip();
+        for (int i = 0; i < 10; i++) {
+            System.out.print(buffer.get());
+        }
+        System.out.println("");
+
+        System.out.println("Position: " + buffer.position());
+        System.out.println("Limit   : " + buffer.limit());
+
+        //
+        // clear the buffer using compact() method.
+        //
+        buffer.rewind();
+        System.out.println("Position: " + buffer.position());
+        System.out.println("Limit   : " + buffer.limit());
+
+        //
+        // Write and read some more data.
+        //
+        buffer.put("Add some more data.");
+
+        buffer.flip();
+        while (buffer.hasRemaining()) {
+            System.out.print(buffer.get());
+        }
     }
 }
