@@ -1,4 +1,4 @@
-package com.geeklife.cs315;
+package com.geeklife.cs315.skiplist;
 
 import java.util.Random;
 
