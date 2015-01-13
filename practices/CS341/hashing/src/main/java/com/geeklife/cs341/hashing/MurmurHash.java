@@ -5,7 +5,7 @@ import static com.geeklife.cs341.hashing.HashingUtils.*;
 /**
  * Created by andysong on 14-10-21.
  */
-public class MurmurHash {
+public class MurmurHash implements Hash32, Hash64 {
 
     private final static long M_LONG = 0xc6a4a7935bd1e995L;
     private final static int R_LONG = 47;
@@ -84,4 +84,13 @@ public class MurmurHash {
         return h;
     }
 
+    @Override
+    public int hash(byte[] data, long seed) {
+        return computeMurmurIntHash(data, HASHING.HASHING_SEED);
+    }
+
+    @Override
+    public long hash64(byte[] data, long seed) {
+        return computeMurmurLongHash(data, HASHING64.HASHING_SEED);
+    }
 }
